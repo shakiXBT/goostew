@@ -142,7 +142,7 @@ contract GooStew is ERC1155, ERC1155TokenReceiver, Constants {
         returns (uint256 stakingId, uint32 sumMultiples)
     {
         unchecked {
-            for (uint256 i = 0; i < gobblerIds.length; i++) {
+            for (uint256 i = 0; i < gobblerIds.length; ++i) {
                 // no overflow as uint32 is the same type ArtGobblers uses
                 sumMultiples += uint32(
                     IGobblers(_gobblers).getGobblerEmissionMultiple(
@@ -306,7 +306,7 @@ contract GooStew is ERC1155, ERC1155TokenReceiver, Constants {
     /// @dev reverts on duplicates in `gobblerIds` or if gobbler cannot be transferred from msg.sender
     function _pullGobblers(uint256[] memory gobblerIds) internal {
         unchecked {
-            for (uint256 i = 0; i < gobblerIds.length; i++) {
+            for (uint256 i = 0; i < gobblerIds.length; ++i) {
                 // also "stakes" these gobblers to ArtGobblers, we gain their emissionMultiples
                 IERC721(_gobblers).transferFrom(
                     msg.sender,
@@ -319,7 +319,7 @@ contract GooStew is ERC1155, ERC1155TokenReceiver, Constants {
 
     function _pushGobblers(address to, uint256[] memory gobblerIds) internal {
         unchecked {
-            for (uint256 i = 0; i < gobblerIds.length; i++) {
+            for (uint256 i = 0; i < gobblerIds.length; ++i) {
                 // this also accrues inflation for us and
                 // "unstakes" them from ArtGobblers, we lose the emissionMultiples
                 // no `safeTransferFrom` because if you call this function we expect you can handle receiving the NFT (to == msg.sender)

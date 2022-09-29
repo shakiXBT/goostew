@@ -1,0 +1,1 @@
+GooStewTest:testNoLoss(uint16[3],uint72[3],uint24[2]) (runs: 16384, μ: 688214, ~: 689604)
